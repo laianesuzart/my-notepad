@@ -1,0 +1,20 @@
+.inputBar {
+  display: block;
+  margin: 0 auto;
+  padding: 8px 16px;
+  width: 65%;
+  max-width: 550px;
+  font-size: 1rem;
+  background-color: rgb(236, 235, 235);
+  border-radius: 2px;
+  border: 1px solid lightgray;
+  outline: none;
+
+  &:hover {
+    border: 1px solid #ff8d5c;
+  }
+  &:focus {
+    background-color: #ffffff;
+    border: 1px solid #ff8d5c;
+  }
+}

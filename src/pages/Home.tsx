@@ -3,6 +3,7 @@ import { ThemeProvider } from "hooks/ThemeContext";
 import { Header } from "components/Header";
 import styles from "styles/pages/Home.module.scss";
 import { Menu } from "components/Menu";
+import { EntryBar } from "components/EntryBar";
 
 export function Home() {
   const [showNotes, setShowNotes] = useState<boolean>(false);
@@ -14,6 +15,7 @@ export function Home() {
       </ThemeProvider>
       <Menu setShowNotes={setShowNotes} />
       <h2 className={styles.title}>{showNotes ? "Notes" : "To do"}</h2>
+      <EntryBar isAddNotes={showNotes}/>
     </>
   );
 }
