@@ -46,4 +46,5 @@ button {
   cursor: pointer;
   border: none;
   font-family: 'Atkinson Hyperlegible', sans-serif;
+  @include theme("color", "color-text");
 }
