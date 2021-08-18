@@ -1,20 +1,25 @@
+import { useThemeContext } from "hooks/ThemeContext";
 import { BiSun, BiMoon } from "react-icons/bi";
 import styles from "styles/components/Header.module.scss";
 
-interface HeaderProps {
-  theme: string;
-}
+export function Header() {
+  const { currentTheme, changeTheme } = useThemeContext();
 
-export function Header({ theme }: HeaderProps) {
   return (
     <header className={styles.headerContainer}>
       <h1>My Notepad</h1>
       <div>
         <BiSun
-          style={{ color: theme === "dark" ? "gray" : "rgb(241, 183, 21)" }}
+          style={{
+            color: currentTheme === "dark" ? "gray" : "rgb(241, 183, 21)",
+          }}
+          onClick={() => changeTheme("light")}
         />
         <BiMoon
-          style={{ color: theme === "light" ? "gray" : "rgb(97, 16, 190)" }}
+          style={{
+            color: currentTheme === "light" ? "gray" : "rgb(97, 16, 190)",
+          }}
+          onClick={() => changeTheme("dark")}
         />
       </div>
     </header>

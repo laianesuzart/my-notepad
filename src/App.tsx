@@ -1,10 +1,8 @@
-import { Header } from 'components/Header'
-import 'styles/global.scss'
+import "styles/global.scss";
+import { Home } from "styles/pages/Home";
 
 function App() {
-  return (
-    <Header theme="light"/>
-  );
+  return <Home />;
 }
 
 export default App;

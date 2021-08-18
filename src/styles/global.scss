@@ -39,6 +39,7 @@ body {
   @include theme("background-color", "color-background");
   @include theme("color", "color-text");
   font-family: 'Atkinson Hyperlegible', sans-serif;
+  transition: all 300ms ease-in-out;
 }
 
 button {
