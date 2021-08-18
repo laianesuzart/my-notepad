@@ -1,17 +1,11 @@
 $themes: (
   light: (
     color-background: #ffffff,
-    color-text: #08080c,
-    color-highlight: #ff8d5c,
-    color-title: #ed6e78,
-    color-checked: #5ca4a9,
+    color-text: #08080c
   ),
   dark: (
     color-background: #08080c,
-    color-text: #ffffff,
-    color-highlight: #e94a35,
-    color-title: #ed6e78,
-    color-checked: #5ca4a9,
+    color-text: #ffffff
   ),
 );
 
@@ -31,7 +25,9 @@ header,
 main,
 ul,
 li,
-a {
+a,
+h1,
+h2 {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -42,9 +38,11 @@ a {
 body {
   @include theme("background-color", "color-background");
   @include theme("color", "color-text");
+  font-family: 'Atkinson Hyperlegible', sans-serif;
 }
 
 button {
   cursor: pointer;
   border: none;
+  font-family: 'Atkinson Hyperlegible', sans-serif;
 }

@@ -1,10 +1,9 @@
-import React from 'react';
+import { Header } from 'components/Header'
 import 'styles/global.scss'
 
 function App() {
   return (
-    <div>
-    </div>
+    <Header theme="light"/>
   );
 }
 
