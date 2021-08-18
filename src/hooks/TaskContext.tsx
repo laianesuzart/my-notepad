@@ -5,12 +5,7 @@ import {
   useEffect,
   ReactNode,
 } from "react";
-
-interface Task {
-  id: string;
-  content: string;
-  isCompleted: boolean;
-}
+import { Task } from "types/Task";
 
 interface TaskContextData {
   tasks: Task[];
@@ -39,12 +34,17 @@ export function TaskProvider({ children }: TaskProviderProps) {
   }, [tasks]);
 
   function addTask(task: Task) {
-      setTasks([task, ...tasks]);
+    setTasks([task, ...tasks]);
   }
 
-  function deleteTask(id: string) {}
+  function deleteTask(id: string) {
+    const new_tasks = tasks.filter((item) => item.id !== id);
+    setTasks(new_tasks);
+  }
 
-  function updateTask(task: Task) {}
+  function updateTask(task: Task) {
+    
+  }
 
   return (
     <TaskContext.Provider value={{ tasks, addTask, deleteTask, updateTask }}>
