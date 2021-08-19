@@ -9,12 +9,13 @@ interface TaskCardProps {
 
 export function TaskCard({ task }: TaskCardProps) {
   const { updateTask, deleteTask } = useTaskContext();
+  const { id, content, isCompleted } = task;
 
   function updateStatus() {
     const updatedTask = {
-      id: task.id,
-      content: task.content,
-      isCompleted: !task.isCompleted,
+      id,
+      content,
+      isCompleted: !isCompleted,
     };
 
     updateTask(updatedTask);
@@ -22,15 +23,25 @@ export function TaskCard({ task }: TaskCardProps) {
 
   return (
     <div className={styles.cardContainer}>
-      <input
-        type="checkbox"
-        name="taskStatus"
-        id="taskStatus"
-        checked={task.isCompleted}
-        onChange={updateStatus}
-      />
-      <span>{task.content}</span>
-      <button title="Delete" onClick={() => deleteTask(task.id)}>
+      <label htmlFor={`task${id}`} className={styles.checkbox}>
+        <input
+          type="checkbox"
+          name="taskStatus"
+          id={`task${id}`}
+          checked={isCompleted}
+          onChange={updateStatus}
+        />
+        <span></span>
+      </label>
+      <span
+        style={{
+          textDecoration: isCompleted ? "line-through" : "none",
+          opacity: isCompleted ? "0.4" : "1",
+        }}
+      >
+        {task.content}
+      </span>
+      <button title="Delete" onClick={() => deleteTask(id)}>
         <RiDeleteBin5Fill />
       </button>
     </div>

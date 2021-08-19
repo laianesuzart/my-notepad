@@ -25,6 +25,7 @@ header,
 main,
 ul,
 li,
+input,
 a,
 h1,
 h2 {
@@ -45,6 +46,7 @@ body {
 button {
   cursor: pointer;
   border: none;
+  background-color: transparent;
   font-family: 'Atkinson Hyperlegible', sans-serif;
   @include theme("color", "color-text");
 }
