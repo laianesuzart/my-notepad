@@ -17,8 +17,7 @@ function App() {
       ) : (
         <TaskProvider>
           <NoteProvider>
-
-          <Home />
+            <Home />
           </NoteProvider>
         </TaskProvider>
       )}

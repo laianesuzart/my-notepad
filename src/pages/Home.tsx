@@ -6,8 +6,8 @@ import { Header } from "components/Header";
 import { Menu } from "components/Menu";
 import { EntryBar } from "components/EntryBar";
 import { TaskCard } from "components/TaskCard";
-import styles from "styles/pages/Home.module.scss";
 import { NoteCard } from "components/NoteCard";
+import styles from "styles/pages/Home.module.scss";
 
 export function Home() {
   const [showNotes, setShowNotes] = useState<boolean>(false);
@@ -31,7 +31,7 @@ export function Home() {
               <span onClick={deleteAllTasks}>Clear all</span>
             </div>
           </div>
-          <ul className={styles.cardList}>
+          <ul className={styles.taskList}>
             {tasks.map((task) => (
               <li key={task.id}>
                 <TaskCard task={task} />
@@ -42,7 +42,7 @@ export function Home() {
       )}
 
       {showNotes && (
-        <ul>
+        <ul className={styles.noteList}>
           {notes?.map((note) => (
             <li key={note.id}>
               <NoteCard note={note} />

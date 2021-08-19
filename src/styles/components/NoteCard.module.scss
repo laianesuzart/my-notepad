@@ -1,22 +1,54 @@
 .cardContainer {
   background-color: #ed6e78;
-  width: 200px;
-  height: 200px;
+  color: #000;
+  width: 150px;
+  height: 150px;
+  padding: 4px;
   overflow-y: auto;
+  border-radius: 4px;
+  box-shadow: 1px 1px 3px rgb(250, 65, 96);
+  position: relative;
+
+  span {
+    flex-grow: 1;
+    word-break: break-word;
+  }
+
+  &:hover button {
+    display: block;
+  }
+
+  button {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 0;
+    opacity: 0.5;
+    display: none;
+    transition: opacity 300ms ease-in-out;
+
+    &:hover {
+      opacity: 1;
+    }
+
+    svg {
+      color: #000;
+    }
+  }
 
   &::-webkit-scrollbar {
     width: 4px;
   }
 
   &::-webkit-scrollbar-track {
-    background: #f1f1f1;
+    background: #ed6e78;
   }
 
   &::-webkit-scrollbar-thumb {
-    background: #888;
+    background: #ff8d5c;
   }
 
   &::-webkit-scrollbar-thumb:hover {
-    background: #555;
+    background: #e94a35;
   }
 }
