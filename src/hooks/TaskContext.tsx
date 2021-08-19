@@ -12,6 +12,7 @@ interface TaskContextData {
   addTask: (task: Task) => void;
   deleteTask: (id: string) => void;
   updateTask: (task: Task) => void;
+  deleteCompletedTasks: () => void;
   deleteAllTasks: () => void;
 }
 
@@ -35,7 +36,7 @@ export function TaskProvider({ children }: TaskProviderProps) {
   }, [tasks]);
 
   function addTask(task: Task) {
-    setTasks([task, ...tasks]);
+    setTasks([...tasks, task]);
   }
 
   function deleteTask(id: string) {
@@ -54,13 +55,25 @@ export function TaskProvider({ children }: TaskProviderProps) {
     setTasks(taskList);
   }
 
+  function deleteCompletedTasks() {
+    const newTasks = tasks.filter((item) => !item.isCompleted);
+    setTasks(newTasks);
+  }
+
   function deleteAllTasks() {
     setTasks([]);
   }
 
   return (
     <TaskContext.Provider
-      value={{ tasks, addTask, deleteTask, updateTask, deleteAllTasks }}
+      value={{
+        tasks,
+        addTask,
+        deleteTask,
+        updateTask,
+        deleteCompletedTasks,
+        deleteAllTasks,
+      }}
     >
       {children}
     </TaskContext.Provider>

@@ -9,7 +9,7 @@ import styles from "styles/pages/Home.module.scss";
 
 export function Home() {
   const [showNotes, setShowNotes] = useState<boolean>(false);
-  const { tasks } = useTaskContext();
+  const { tasks, deleteCompletedTasks, deleteAllTasks } = useTaskContext();
 
   return (
     <>
@@ -19,14 +19,21 @@ export function Home() {
       <Menu setShowNotes={setShowNotes} />
       <h2 className={styles.title}>{showNotes ? "Notes" : "To do"}</h2>
       <EntryBar isAddNotes={showNotes} />
-
-      <ul className={styles.cardList}>
-        {tasks?.map((task) => (
-          <li key={task.id}>
-            <TaskCard task={task} />
-          </li>
-        ))}
-      </ul>
+      {!showNotes && (
+        <>
+          <div className={styles.tasksBar}>
+            <span onClick={deleteCompletedTasks}>Clear completed</span>
+            <span onClick={deleteAllTasks}>Clear all</span>
+          </div>
+          <ul className={styles.cardList}>
+            {tasks.map((task) => (
+              <li key={task.id}>
+                <TaskCard task={task} />
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
     </>
   );
 }

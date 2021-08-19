@@ -1,3 +1,11 @@
+@mixin layout {
+  width: 90%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 8px;
+  display: flex;
+}
+
 .title {
   color: #e94a35;
   font-size: 2rem;
@@ -5,12 +13,25 @@
   padding: 4px 4px 8px;
 }
 
+.tasksBar {
+  @include layout;
+  justify-content: flex-end;
+  font-size: 0.6rem;
+
+  span {
+    padding: 0 4px;
+    opacity: 0.8;
+    cursor: pointer;
+    transition: opacity 300ms ease-in-out;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
 .cardList {
-  width: 90%;
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 8px;
-  display: flex;
+  @include layout;
   flex-direction: column;
   gap: 8px;
 }
