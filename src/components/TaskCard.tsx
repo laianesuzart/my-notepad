@@ -1,7 +1,7 @@
 import { RiDeleteBin5Fill } from "react-icons/ri";
 import { Task } from "types/Task";
-import styles from "styles/components/TaskCard.module.scss";
 import { useTaskContext } from "hooks/TaskContext";
+import styles from "styles/components/TaskCard.module.scss";
 
 interface TaskCardProps {
   task: Task;
@@ -39,7 +39,7 @@ export function TaskCard({ task }: TaskCardProps) {
           opacity: isCompleted ? "0.4" : "1",
         }}
       >
-        {task.content}
+        {content}
       </span>
       <button title="Delete" onClick={() => deleteTask(id)}>
         <RiDeleteBin5Fill />
