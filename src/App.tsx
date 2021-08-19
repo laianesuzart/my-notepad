@@ -1,28 +1,16 @@
-import { useState } from "react";
-import { TaskProvider } from "hooks/TaskContext";
-import { NoteProvider } from "hooks/NoteContext";
-import { Home } from "pages/Home";
 import "styles/global.scss";
+import { useState } from "react";
+import { Provider } from "hooks/Provider";
+import { SplashScreen } from "components/SplashScreen";
+import { Home } from "pages/Home";
 
 function App() {
   const [loading, setLoading] = useState<boolean>(true);
 
   setTimeout(() => {
     setLoading(false);
-  }, 1000);
-  return (
-    <>
-      {loading ? (
-        <div>loading</div>
-      ) : (
-        <TaskProvider>
-          <NoteProvider>
-            <Home />
-          </NoteProvider>
-        </TaskProvider>
-      )}
-    </>
-  );
+  }, 2300);
+  return <Provider>{loading ? <SplashScreen /> : <Home />}</Provider>;
 }
 
 export default App;

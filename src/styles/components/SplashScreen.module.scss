@@ -1,0 +1,45 @@
+.container {
+    display: grid;
+  place-items: center;
+  height: 100vh;
+  background-color: #ed6e78;
+
+  h1 {
+    font-family: "Nova Mono", monospace;
+    font-size: 4rem;
+    color: #f6efee;
+    position: relative;
+    width: max-content;
+  }
+  
+  h1::before,
+  h1::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+  }
+  
+  h1::before {
+    background-color: #ed6e78;
+    animation: typewritter 2s steps(10) forwards;
+  }
+  
+  h1::after {
+    width: 0.25rem;
+    background-color: #f6efee;
+    animation: typewritter 2s steps(10) forwards,
+      blink 700ms steps(10) infinite;
+  }
+}
+
+@keyframes typewritter {
+    to {
+      left: 100%;
+    }
+  }
+  
+  @keyframes blink {
+    to {
+      background-color: transparent;
+    }
+  }

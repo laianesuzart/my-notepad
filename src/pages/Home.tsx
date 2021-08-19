@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { ThemeProvider } from "hooks/ThemeContext";
 import { useTaskContext } from "hooks/TaskContext";
 import { useNoteContext } from "hooks/NoteContext";
 import { Header } from "components/Header";
@@ -16,9 +15,7 @@ export function Home() {
 
   return (
     <>
-      <ThemeProvider>
-        <Header />
-      </ThemeProvider>
+      <Header />
       <Menu setShowNotes={setShowNotes} />
       <h2 className={styles.title}>{showNotes ? "Notes" : "To do"}</h2>
       <EntryBar isAddNotes={showNotes} />
@@ -40,7 +37,6 @@ export function Home() {
           </ul>
         </>
       )}
-
       {showNotes && (
         <ul className={styles.noteList}>
           {notes?.map((note) => (
