@@ -8,10 +8,35 @@
   border-radius: 4px;
   box-shadow: 1px 1px 3px rgb(250, 65, 96);
   position: relative;
+  text-align: center;
 
   span {
     flex-grow: 1;
     word-break: break-word;
+  }
+
+  textarea {
+    width: 90%;
+    height: 90%;
+    background-color: transparent;
+    border-radius: 4px;
+    outline: none;
+
+    &::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: #ed6e78;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: #ff8d5c;
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+      background: #e94a35;
+    }
   }
 
   &:hover button {
