@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import { RiDeleteBin5Fill } from "react-icons/ri";
 import { Task } from "types/Task";
 import { useTaskContext } from "hooks/TaskContext";
@@ -8,6 +9,8 @@ interface TaskCardProps {
 }
 
 export function TaskCard({ task }: TaskCardProps) {
+  const [editing, setEditing] = useState<boolean>(false);
+  const [newContent, setNewContent] = useState<string>("");
   const { updateTask, deleteTask } = useTaskContext();
   const { id, content, isCompleted } = task;
 
@@ -19,6 +22,27 @@ export function TaskCard({ task }: TaskCardProps) {
     };
 
     updateTask(updatedTask);
+  }
+
+  function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
+    setNewContent(e.target.value);
+  }
+
+  function handleUpdateContent(e: React.KeyboardEvent<HTMLInputElement>) {
+    if (e.key === "Enter") {
+      const updatedTask = {
+        id,
+        content: newContent,
+        isCompleted,
+      };
+
+      updateTask(updatedTask);
+      setEditing(false);
+    }
+
+    if (e.key === "Escape") {
+      setEditing(false);
+    }
   }
 
   return (
@@ -33,14 +57,25 @@ export function TaskCard({ task }: TaskCardProps) {
         />
         <span></span>
       </label>
-      <span
-        style={{
-          textDecoration: isCompleted ? "line-through" : "none",
-          opacity: isCompleted ? "0.4" : "1",
-        }}
-      >
-        {content}
-      </span>
+      {editing ? (
+        <input
+          type="text"
+          autoFocus
+          defaultValue={content}
+          onChange={handleChange}
+          onKeyDown={handleUpdateContent}
+        />
+      ) : (
+        <span
+          onDoubleClick={() => setEditing(true)}
+          style={{
+            textDecoration: isCompleted ? "line-through" : "none",
+            opacity: isCompleted ? "0.4" : "1",
+          }}
+        >
+          {content}
+        </span>
+      )}
       <button title="Delete" onClick={() => deleteTask(id)}>
         <RiDeleteBin5Fill />
       </button>

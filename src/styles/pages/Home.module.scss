@@ -15,8 +15,13 @@
 
 .tasksBar {
   @include layout;
-  justify-content: flex-end;
-  font-size: 0.6rem;
+  width: 100%;
+  justify-content: space-between;
+  font-size: 0.5rem;
+
+  p {
+    opacity: 0.8;
+  }
 
   span {
     padding: 0 4px;
@@ -34,4 +39,10 @@
   @include layout;
   flex-direction: column;
   gap: 8px;
+}
+
+@media (min-width: 400px) {
+  .tasksBar {
+    font-size: 0.6rem;
+  }
 }

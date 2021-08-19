@@ -22,8 +22,11 @@ export function Home() {
       {!showNotes && (
         <>
           <div className={styles.tasksBar}>
-            <span onClick={deleteCompletedTasks}>Clear completed</span>
-            <span onClick={deleteAllTasks}>Clear all</span>
+            <p>Double-click to edit, Enter to save or Esc to cancel</p>
+            <div>
+              <span onClick={deleteCompletedTasks}>Clear completed</span>
+              <span onClick={deleteAllTasks}>Clear all</span>
+            </div>
           </div>
           <ul className={styles.cardList}>
             {tasks.map((task) => (

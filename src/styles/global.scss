@@ -1,11 +1,11 @@
 $themes: (
   light: (
     color-background: #ffffff,
-    color-text: #08080c
+    color-text: #08080c,
   ),
   dark: (
     color-background: #08080c,
-    color-text: #ffffff
+    color-text: #ffffff,
   ),
 );
 
@@ -20,6 +20,7 @@ $themes: (
 html,
 body,
 div,
+p,
 nav,
 header,
 main,
@@ -39,7 +40,7 @@ h2 {
 body {
   @include theme("background-color", "color-background");
   @include theme("color", "color-text");
-  font-family: 'Atkinson Hyperlegible', sans-serif;
+  font-family: "Atkinson Hyperlegible", sans-serif;
   transition: all 300ms ease-in-out;
 }
 
@@ -47,6 +48,6 @@ button {
   cursor: pointer;
   border: none;
   background-color: transparent;
-  font-family: 'Atkinson Hyperlegible', sans-serif;
+  font-family: "Atkinson Hyperlegible", sans-serif;
   @include theme("color", "color-text");
 }
