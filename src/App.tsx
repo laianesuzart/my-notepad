@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { TaskProvider } from "hooks/TaskContext";
+import { NoteProvider } from "hooks/NoteContext";
 import { Home } from "pages/Home";
 import "styles/global.scss";
 
@@ -15,7 +16,10 @@ function App() {
         <div>loading</div>
       ) : (
         <TaskProvider>
+          <NoteProvider>
+
           <Home />
+          </NoteProvider>
         </TaskProvider>
       )}
     </>

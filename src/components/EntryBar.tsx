@@ -1,5 +1,6 @@
-import { useTaskContext } from "hooks/TaskContext";
 import React, { useState } from "react";
+import { useTaskContext } from "hooks/TaskContext";
+import { useNoteContext } from "hooks/NoteContext";
 import styles from "styles/components/EntryBar.module.scss";
 
 interface EntryBarProps {
@@ -9,6 +10,7 @@ interface EntryBarProps {
 export function EntryBar({ isAddNotes }: EntryBarProps) {
   const [inputValue, setInputValue] = useState<string>("");
   const { addTask } = useTaskContext();
+  const { addNote } = useNoteContext();
 
   function handleChange(e: React.ChangeEvent<HTMLInputElement>) {
     setInputValue(e.target.value);
@@ -16,13 +18,18 @@ export function EntryBar({ isAddNotes }: EntryBarProps) {
 
   function handleAdd(e: React.KeyboardEvent<HTMLInputElement>) {
     if (e.key === "Enter") {
+      const date = new Date();
+      const id = `${date.getFullYear()}/${
+        date.getMonth() + 1
+      }/${date.getDate()}-${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}:${date.getMilliseconds()}`;
+
       if (isAddNotes) {
-        console.log("nota:", inputValue);
+        const note = {
+          id,
+          content: inputValue,
+        };
+        addNote(note);
       } else {
-        const date = new Date();
-        const id = `${date.getFullYear()}/${
-          date.getMonth() + 1
-        }/${date.getDate()}-${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}:${date.getMilliseconds()}`;
         const task = {
           id,
           content: inputValue,

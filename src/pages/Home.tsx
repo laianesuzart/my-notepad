@@ -1,15 +1,18 @@
 import { useState } from "react";
 import { ThemeProvider } from "hooks/ThemeContext";
 import { useTaskContext } from "hooks/TaskContext";
+import { useNoteContext } from "hooks/NoteContext";
 import { Header } from "components/Header";
 import { Menu } from "components/Menu";
 import { EntryBar } from "components/EntryBar";
 import { TaskCard } from "components/TaskCard";
 import styles from "styles/pages/Home.module.scss";
+import { NoteCard } from "components/NoteCard";
 
 export function Home() {
   const [showNotes, setShowNotes] = useState<boolean>(false);
   const { tasks, deleteCompletedTasks, deleteAllTasks } = useTaskContext();
+  const { notes } = useNoteContext();
 
   return (
     <>
@@ -36,6 +39,16 @@ export function Home() {
             ))}
           </ul>
         </>
+      )}
+
+      {showNotes && (
+        <ul>
+          {notes?.map((note) => (
+            <li key={note.id}>
+              <NoteCard note={note} />
+            </li>
+          ))}
+        </ul>
       )}
     </>
   );
