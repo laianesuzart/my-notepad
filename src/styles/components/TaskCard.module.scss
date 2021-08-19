@@ -29,6 +29,15 @@
       opacity: 1;
     }
   }
+
+  input[type="text"] {
+    flex-grow: 1;
+    font-size: 1rem;
+    padding: 4px 0;
+    background-color: lightgray;
+    border: 1px solid #ed6e78;
+    border-radius: 2px;
+  }
 }
 
 .checkbox {
