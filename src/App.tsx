@@ -9,7 +9,7 @@ function App() {
 
   setTimeout(() => {
     setLoading(false);
-  }, 2300);
+  }, 1500);
   return <Provider>{loading ? <SplashScreen /> : <Home />}</Provider>;
 }
 

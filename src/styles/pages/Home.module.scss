@@ -19,6 +19,10 @@
   justify-content: space-between;
   font-size: 0.5rem;
 
+  @media (min-width: 400px) {
+    font-size: 0.6rem;
+  }
+
   p {
     opacity: 0.8;
   }
@@ -49,10 +53,4 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 4px;
-}
-
-@media (min-width: 400px) {
-  .tasksBar {
-    font-size: 0.6rem;
-  }
 }

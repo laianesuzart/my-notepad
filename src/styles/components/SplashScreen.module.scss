@@ -1,45 +1,60 @@
 .container {
-    display: grid;
-  place-items: center;
-  height: 100vh;
-  background-color: #ed6e78;
+  height: 90vh;
+  width: 90vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  margin: 0 auto;
 
   h1 {
-    font-family: "Nova Mono", monospace;
-    font-size: 4rem;
-    color: #f6efee;
-    position: relative;
-    width: max-content;
+    font-family: "Courgette", cursive;
+    font-size: 3rem;
+    color: #ed6e78;
+
+    @media (min-width: 768px) {
+      font-size: 6rem;
+    }
   }
-  
-  h1::before,
-  h1::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-  }
-  
-  h1::before {
-    background-color: #ed6e78;
-    animation: typewritter 2s steps(10) forwards;
-  }
-  
-  h1::after {
-    width: 0.25rem;
-    background-color: #f6efee;
-    animation: typewritter 2s steps(10) forwards,
-      blink 700ms steps(10) infinite;
+
+  div {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    width: 100px;
+    height: 100px;
+
+    div {
+      width: 20px;
+      height: 20px;
+      background: #d85a8c;
+      border-radius: 50%;
+      animation: bouncer 500ms cubic-bezier(0.19, 0.57, 0.3, 0.98) infinite
+        alternate;
+    }
+
+    div:nth-child(2) {
+      animation-delay: 100ms;
+      opacity: 0.8;
+    }
+
+    div:nth-child(3) {
+      animation-delay: 200ms;
+      opacity: 0.6;
+    }
+
+    div:nth-child(4) {
+      animation-delay: 300ms;
+      opacity: 0.4;
+    }
   }
 }
 
-@keyframes typewritter {
-    to {
-      left: 100%;
-    }
+@keyframes bouncer {
+  from {
+    transform: translateY(0);
   }
-  
-  @keyframes blink {
-    to {
-      background-color: transparent;
-    }
+  to {
+    transform: translateY(-100px);
   }
+}
