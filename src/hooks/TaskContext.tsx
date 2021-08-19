@@ -12,6 +12,7 @@ interface TaskContextData {
   addTask: (task: Task) => void;
   deleteTask: (id: string) => void;
   updateTask: (task: Task) => void;
+  deleteAllTasks: () => void;
 }
 
 interface TaskProviderProps {
@@ -22,9 +23,9 @@ const TaskContext = createContext({} as TaskContextData);
 
 export function TaskProvider({ children }: TaskProviderProps) {
   const [tasks, setTasks] = useState<Task[]>(() => {
-    const task_list = localStorage.getItem("tasks");
-    if (task_list) {
-      return JSON.parse(task_list);
+    const taskList = localStorage.getItem("tasks");
+    if (taskList) {
+      return JSON.parse(taskList);
     }
     return [];
   });
@@ -38,16 +39,29 @@ export function TaskProvider({ children }: TaskProviderProps) {
   }
 
   function deleteTask(id: string) {
-    const new_tasks = tasks.filter((item) => item.id !== id);
-    setTasks(new_tasks);
+    const newTasks = tasks.filter((item) => item.id !== id);
+    setTasks(newTasks);
   }
 
   function updateTask(task: Task) {
-    
+    const oldTask = tasks.findIndex((item) => item.id === task.id);
+    const taskList = [
+      ...tasks.slice(0, oldTask),
+      task,
+      ...tasks.slice(oldTask + 1),
+    ];
+
+    setTasks(taskList);
+  }
+
+  function deleteAllTasks() {
+    setTasks([]);
   }
 
   return (
-    <TaskContext.Provider value={{ tasks, addTask, deleteTask, updateTask }}>
+    <TaskContext.Provider
+      value={{ tasks, addTask, deleteTask, updateTask, deleteAllTasks }}
+    >
       {children}
     </TaskContext.Provider>
   );
