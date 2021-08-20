@@ -1,4 +1,7 @@
 .cardContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   background-color: #ed6e78;
   color: #000;
   width: 150px;
@@ -7,8 +10,6 @@
   overflow-y: auto;
   border-radius: 4px;
   box-shadow: 1px 1px 3px rgb(250, 65, 96);
-  position: relative;
-  text-align: center;
 
   span {
     flex-grow: 1;
@@ -44,9 +45,7 @@
   }
 
   button {
-    position: absolute;
-    bottom: 0;
-    right: 0;
+    align-self: flex-end;
     padding: 0;
     opacity: 0.5;
     display: none;
