@@ -1,8 +1,7 @@
-import { useState } from "react";
-import { RiDeleteBin5Fill } from "react-icons/ri";
-import { useNoteContext } from "hooks/NoteContext";
-import { Note } from "types/Note";
-import styles from "styles/components/NoteCard.module.scss";
+import { useState } from 'react';
+import { RiDeleteBin5Fill } from 'react-icons/ri';
+import { useNoteContext } from 'hooks/NoteContext';
+import { Note } from 'types/Note';
 
 interface NoteCardProps {
   note: Note;
@@ -10,7 +9,7 @@ interface NoteCardProps {
 
 export function NoteCard({ note }: NoteCardProps) {
   const [editing, setEditing] = useState<boolean>(false);
-  const [newContent, setNewContent] = useState<string>("");
+  const [newContent, setNewContent] = useState<string>('');
   const { deleteNote, updateNote } = useNoteContext();
   const { id, content } = note;
 
@@ -19,7 +18,7 @@ export function NoteCard({ note }: NoteCardProps) {
   }
 
   function handleUpdate(e: React.KeyboardEvent<HTMLTextAreaElement>) {
-    if (e.key === "Enter") {
+    if (e.key === 'Enter') {
       const updatedNote = {
         id,
         content: newContent,
@@ -29,14 +28,14 @@ export function NoteCard({ note }: NoteCardProps) {
       setEditing(false);
     }
 
-    if (e.key === "Escape") {
+    if (e.key === 'Escape') {
       setEditing(false);
     }
   }
 
   return (
     <div
-      className={styles.cardContainer}
+      className="flex flex-col items-center bg-primary size-36 p-1 overflow-y-auto rounded-sm shadow-[1px_1px_3px_#fa4160] group"
       onDoubleClick={() => setEditing(true)}
     >
       {editing ? (
@@ -45,11 +44,16 @@ export function NoteCard({ note }: NoteCardProps) {
           defaultValue={content}
           onChange={handleChange}
           onKeyDown={handleUpdate}
+          className="size-[90%] outline-none rounded-sm border border-gray-500"
         />
       ) : (
-        <span>{content}</span>
+        <span className="flex-1 break-all">{content}</span>
       )}
-      <button title="Delete" onClick={() => deleteNote(id)}>
+      <button
+        className="hidden group-hover:block self-end opacity-50 transition-opacity hover:opacity-100"
+        title="Delete"
+        onClick={() => deleteNote(id)}
+      >
         <RiDeleteBin5Fill />
       </button>
     </div>

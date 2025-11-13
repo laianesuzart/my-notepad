@@ -1,8 +1,8 @@
-import "styles/global.scss";
-import { useState } from "react";
-import { Provider } from "hooks/Provider";
-import { SplashScreen } from "components/SplashScreen";
-import { Home } from "pages/Home";
+import 'styles/global.css';
+import { useState } from 'react';
+import { Provider } from 'hooks/Provider';
+import { SplashScreen } from 'components/SplashScreen';
+import { Home } from 'pages/Home';
 
 function App() {
   const [loading, setLoading] = useState<boolean>(true);

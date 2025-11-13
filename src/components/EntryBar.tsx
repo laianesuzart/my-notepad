@@ -1,14 +1,13 @@
-import React, { useState } from "react";
-import { useTaskContext } from "hooks/TaskContext";
-import { useNoteContext } from "hooks/NoteContext";
-import styles from "styles/components/EntryBar.module.scss";
+import React, { useState } from 'react';
+import { useTaskContext } from 'hooks/TaskContext';
+import { useNoteContext } from 'hooks/NoteContext';
 
 interface EntryBarProps {
   isAddNotes: boolean;
 }
 
 export function EntryBar({ isAddNotes }: EntryBarProps) {
-  const [inputValue, setInputValue] = useState<string>("");
+  const [inputValue, setInputValue] = useState<string>('');
   const { addTask } = useTaskContext();
   const { addNote } = useNoteContext();
 
@@ -17,7 +16,7 @@ export function EntryBar({ isAddNotes }: EntryBarProps) {
   }
 
   function handleAdd(e: React.KeyboardEvent<HTMLInputElement>) {
-    if (e.key === "Enter") {
+    if (e.key === 'Enter') {
       const date = new Date();
       const id = `${date.getFullYear()}/${
         date.getMonth() + 1
@@ -37,7 +36,7 @@ export function EntryBar({ isAddNotes }: EntryBarProps) {
         };
         addTask(task);
       }
-      setInputValue("");
+      setInputValue('');
     }
   }
 
@@ -48,7 +47,7 @@ export function EntryBar({ isAddNotes }: EntryBarProps) {
       placeholder="Type and press Enter to add"
       onChange={handleChange}
       onKeyDown={handleAdd}
-      className={styles.inputBar}
+      className="block m-auto py-2 px-4 w-[90%] max-w-2xl bg-gray-100 rounded-xs border border-gray-300 outline-none hover:border-secondary focus:border-secondary focus:bg-white transition-colors"
     />
   );
 }

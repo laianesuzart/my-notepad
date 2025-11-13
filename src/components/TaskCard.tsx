@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import { RiDeleteBin5Fill } from "react-icons/ri";
-import { Task } from "types/Task";
-import { useTaskContext } from "hooks/TaskContext";
-import styles from "styles/components/TaskCard.module.scss";
+import React, { useState } from 'react';
+import { RiDeleteBin5Fill } from 'react-icons/ri';
+import { FaCheck } from 'react-icons/fa';
+import { Task } from 'types/Task';
+import { useTaskContext } from 'hooks/TaskContext';
 
 interface TaskCardProps {
   task: Task;
@@ -10,7 +10,7 @@ interface TaskCardProps {
 
 export function TaskCard({ task }: TaskCardProps) {
   const [editing, setEditing] = useState<boolean>(false);
-  const [newContent, setNewContent] = useState<string>("");
+  const [newContent, setNewContent] = useState<string>('');
   const { updateTask, deleteTask } = useTaskContext();
   const { id, content, isCompleted } = task;
 
@@ -29,7 +29,7 @@ export function TaskCard({ task }: TaskCardProps) {
   }
 
   function handleUpdateContent(e: React.KeyboardEvent<HTMLInputElement>) {
-    if (e.key === "Enter") {
+    if (e.key === 'Enter') {
       const updatedTask = {
         id,
         content: newContent,
@@ -40,22 +40,29 @@ export function TaskCard({ task }: TaskCardProps) {
       setEditing(false);
     }
 
-    if (e.key === "Escape") {
+    if (e.key === 'Escape') {
       setEditing(false);
     }
   }
 
   return (
-    <div className={styles.cardContainer}>
-      <label htmlFor={`task${id}`} className={styles.checkbox}>
+    <div className="flex items-center py-2 gap-2 group">
+      <label htmlFor={`task${id}`} className="group/checkbox block leading-0 cursor-pointer">
         <input
           type="checkbox"
           name="taskStatus"
           id={`task${id}`}
           checked={isCompleted}
           onChange={updateStatus}
+          className="hidden"
         />
-        <span></span>
+        <span
+          className={`size-5 rounded-full grid place-content-center transition-colors ${
+            isCompleted ? 'bg-cyan-600' : 'bg-gray-100 group-hover/checkbox:bg-gray-200'
+          }`}
+        >
+          <FaCheck className={`${isCompleted ? 'block' : 'hidden'} text-white text-xs`} />
+        </span>
       </label>
       {editing ? (
         <input
@@ -64,19 +71,23 @@ export function TaskCard({ task }: TaskCardProps) {
           defaultValue={content}
           onChange={handleChange}
           onKeyDown={handleUpdateContent}
+          className="flex-1 py-1 bg-gray-100 border rounded-xs outline-none border-gray-300 hover:border-primary focus:border-primary focus:bg-white transition-colors"
         />
       ) : (
         <span
           onDoubleClick={() => setEditing(true)}
-          style={{
-            textDecoration: isCompleted ? "line-through" : "none",
-            opacity: isCompleted ? "0.4" : "1",
-          }}
+          className={`break-all flex-1 cursor-alias ${
+            isCompleted ? 'opacity-40 line-through' : ''
+          }`}
         >
           {content}
         </span>
       )}
-      <button title="Delete" onClick={() => deleteTask(id)}>
+      <button
+        title="Delete"
+        onClick={() => deleteTask(id)}
+        className="hidden opacity-50 group-hover:block transition-opacity hover:opacity-100"
+      >
         <RiDeleteBin5Fill />
       </button>
     </div>
