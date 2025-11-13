@@ -21,7 +21,7 @@ export function ThemeProvider({ children }: ThemeProviderProps) {
   function changeTheme(theme: 'light' | 'dark') {
     if (theme !== currentTheme) {
       document.documentElement.dataset.theme = theme;
-      localStorage.setItem('theme', theme);
+      localStorage.setItem('theme', JSON.stringify(theme));
       setCurrentTheme(theme);
     }
   }
