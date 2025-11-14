@@ -39,7 +39,7 @@ export function TaskCard({ task }: TaskCardProps) {
   }
 
   function handleUpdateContent(e: React.KeyboardEvent<HTMLInputElement>) {
-    if (e.key === 'Enter') {
+    if (e.key === 'Enter' && !e.shiftKey) {
       const updatedTask = {
         id,
         content: newContent,
@@ -82,6 +82,7 @@ export function TaskCard({ task }: TaskCardProps) {
           defaultValue={content}
           onChange={handleChange}
           onKeyDown={handleUpdateContent}
+          onBlur={() => setEditing(false)}
           className="flex-1 py-1 text-gray-900 bg-gray-100 border rounded-xs outline-none border-gray-300 hover:border-primary focus:border-primary focus:bg-white transition-colors"
         />
       ) : (
