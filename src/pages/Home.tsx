@@ -1,4 +1,21 @@
 import { useState } from 'react';
+import { useAutoAnimate } from '@formkit/auto-animate/react';
+import {
+  DndContext,
+  closestCenter,
+  KeyboardSensor,
+  PointerSensor,
+  useSensor,
+  useSensors,
+  DragEndEvent,
+} from '@dnd-kit/core';
+import {
+  arrayMove,
+  SortableContext,
+  sortableKeyboardCoordinates,
+  verticalListSortingStrategy,
+} from '@dnd-kit/sortable';
+
 import { useTaskContext } from 'hooks/TaskContext';
 import { useNoteContext } from 'hooks/NoteContext';
 import { Header } from 'components/Header';
@@ -8,8 +25,27 @@ import { NoteCard } from 'components/NoteCard';
 
 export function Home() {
   const [showNotes, setShowNotes] = useState<boolean>(false);
-  const { tasks, deleteCompletedTasks, deleteAllTasks } = useTaskContext();
+  const { tasks, setTasks, deleteCompletedTasks, deleteAllTasks } = useTaskContext();
   const { notes } = useNoteContext();
+
+  const [notesContainer] = useAutoAnimate();
+  const sensors = useSensors(
+    useSensor(PointerSensor),
+    useSensor(KeyboardSensor, {
+      coordinateGetter: sortableKeyboardCoordinates,
+    })
+  );
+
+  function handleDragEnd(event: DragEndEvent) {
+    const { active, over } = event;
+
+    if (active.id !== over?.id) {
+      const oldIndex = tasks.findIndex((task) => task.id === active.id);
+      const newIndex = tasks.findIndex((task) => task.id === over?.id);
+      const orderedTasks = arrayMove(tasks, oldIndex, newIndex);
+      setTasks(orderedTasks);
+    }
+  }
 
   return (
     <>
@@ -56,17 +92,29 @@ export function Home() {
                 </button>
               </div>
             </div>
-            <ul className="w-[90%] max-w-2xl m-auto p-2 flex flex-col gap-2">
-              {tasks.map((task) => (
-                <li key={task.id}>
-                  <TaskCard task={task} />
-                </li>
-              ))}
-            </ul>
+
+            <DndContext
+              sensors={sensors}
+              collisionDetection={closestCenter}
+              onDragEnd={handleDragEnd}
+            >
+              <SortableContext items={tasks} strategy={verticalListSortingStrategy}>
+                <ul className="w-[90%] max-w-2xl m-auto p-2 flex flex-col gap-2">
+                  {tasks.map((task) => (
+                    <li key={task.id}>
+                      <TaskCard task={task} />
+                    </li>
+                  ))}
+                </ul>
+              </SortableContext>
+            </DndContext>
           </>
         )}
         {showNotes && (
-          <ul className="max-w-4xl py-4 px-2 m-auto flex flex-wrap justify-center gap-1">
+          <ul
+            ref={notesContainer}
+            className="max-w-4xl py-4 px-2 m-auto sm:columns-2 md:columns-3 gap-2"
+          >
             {notes?.map((note) => (
               <li key={note.id}>
                 <NoteCard note={note} />

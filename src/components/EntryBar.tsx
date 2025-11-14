@@ -16,7 +16,7 @@ export function EntryBar({ isAddNotes }: EntryBarProps) {
   }
 
   function handleAdd(e: React.KeyboardEvent<HTMLInputElement>) {
-    if (e.key === 'Enter') {
+    if (e.key === 'Enter' && inputValue) {
       const date = new Date();
       const id = `${date.getFullYear()}/${
         date.getMonth() + 1
@@ -47,7 +47,7 @@ export function EntryBar({ isAddNotes }: EntryBarProps) {
       placeholder="Type and press Enter to add"
       onChange={handleChange}
       onKeyDown={handleAdd}
-      className="block m-auto py-2 px-4 w-[90%] max-w-2xl bg-gray-100 rounded-xs border border-gray-300 outline-none hover:border-secondary focus:border-secondary focus:bg-white transition-colors"
+      className="block m-auto py-2 px-4 w-[90%] max-w-2xl text-gray-900 bg-gray-100 rounded-xs border border-gray-300 outline-none hover:border-secondary focus:border-secondary focus:bg-white transition-colors"
     />
   );
 }

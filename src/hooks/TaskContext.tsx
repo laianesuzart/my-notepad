@@ -1,14 +1,9 @@
-import {
-  createContext,
-  useContext,
-  useState,
-  useEffect,
-  ReactNode,
-} from "react";
-import { Task } from "types/Task";
+import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import { Task } from 'types/Task';
 
 interface TaskContextData {
   tasks: Task[];
+  setTasks: (tasks: Task[]) => void;
   addTask: (task: Task) => void;
   deleteTask: (id: string) => void;
   updateTask: (task: Task) => void;
@@ -24,7 +19,7 @@ const TaskContext = createContext({} as TaskContextData);
 
 export function TaskProvider({ children }: TaskProviderProps) {
   const [tasks, setTasks] = useState<Task[]>(() => {
-    const taskList = localStorage.getItem("tasks");
+    const taskList = localStorage.getItem('tasks');
     if (taskList) {
       return JSON.parse(taskList);
     }
@@ -32,7 +27,7 @@ export function TaskProvider({ children }: TaskProviderProps) {
   });
 
   useEffect(() => {
-    localStorage.setItem("tasks", JSON.stringify(tasks));
+    localStorage.setItem('tasks', JSON.stringify(tasks));
   }, [tasks]);
 
   function addTask(task: Task) {
@@ -46,11 +41,7 @@ export function TaskProvider({ children }: TaskProviderProps) {
 
   function updateTask(task: Task) {
     const oldTask = tasks.findIndex((item) => item.id === task.id);
-    const taskList = [
-      ...tasks.slice(0, oldTask),
-      task,
-      ...tasks.slice(oldTask + 1),
-    ];
+    const taskList = [...tasks.slice(0, oldTask), task, ...tasks.slice(oldTask + 1)];
 
     setTasks(taskList);
   }
@@ -68,6 +59,7 @@ export function TaskProvider({ children }: TaskProviderProps) {
     <TaskContext.Provider
       value={{
         tasks,
+        setTasks,
         addTask,
         deleteTask,
         updateTask,
