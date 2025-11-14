@@ -1,36 +1,69 @@
 # [📝 My Notepad](https://mynotepad.vercel.app/)
-### Adicione, edite e exclua afazeres e notas - organize sua vida!
 
-#### Projeto concluído ✔️
+<p align="center">Add, edit, delete, and organize your to-dos and notes — plan your life with ease!</p>
 
-[Sobre](#sobre) • [Tecnologias](#tecnologias) • [Layout](#layout) • [Autora](#autora) • [Licença](#licença)
+<p align="center">
+  <a href="#about">about</a> •
+  <a href="#tech-stack">tech stack</a> •
+  <a href="#getting-started">getting started</a> •
+  <a href="#layout">layout</a> • 
+  <a href="#author">author</a> •
+  <a href="#license">license</a>
+</p>
 
-## Sobre
-My Notepad é uma aplicação prática que permite adicionar afazeres (to do/ checklist) e notas com um simples Enter. Para editar você só precisa clicar duas vezes no card e depois Enter para salvar ou Esc para cancelar. É possível também excluir ao clicar no botão de Delete que fica visível quando o cursor está sob o card. No caso dos cards de afazeres, é possível marcá-los como concluídos ao selecionar a checkbox e também pode-se excluir as tarefas concluídas ou todas as tarefas de uma só vez, ao clicar nas opções abaixo do campo de entrada.\
-\
-A plataforma conta com os temas de aparência claro e escuro, e não se preocupe em mudar o tema sempre que abrir a página, pois a sua preferência de tema fica guardada no local storage. Todas as outras informações também são armazenadas no local storage, então pode adicionar tarefas e notas sem medo! 😄
+## about
 
-## Tecnologias
-As seguintes ferramentas foram utilizadas na construção do projeto:
+My Notepad is a simple and user‑friendly application that lets you add to-dos (checklists) and notes by pressing Enter. To edit an item, just double-click the card and press Enter to save or Esc to cancel. You can also delete items using the Delete button, which becomes visible when hovering over a card.
 
-* React
-* TypeScript
-* SASS
+For to-do cards, you can mark tasks as completed by checking the checkbox. You may also delete completed tasks — or all tasks at once — using the actions below the input field.
 
-## Layout
-A aplicação possui dois temas de aparência (claro e escuro) para agradar um público maior:
-#### Desktop
-![Desktop - Tela dos afazeres](https://i.imgur.com/YTz4YW8.png)
-![Desktop - Tela das notas](https://i.imgur.com/WHU8Z6t.png)
-#### Mobile
-![Mobile - Tela dos afazeres](https://i.imgur.com/O5BqzPk.png)
-![Mobile - Tela das notas](https://i.imgur.com/0ZSdQTr.png)
+You can also reorder your to-dos by dragging the reorder icon on each item.
 
-## Autora
-Feito com ❤️ por:
+The platform includes light and dark themes, and you won’t need to switch them every time — your theme preference is saved in localStorage. All your to-dos and notes are also stored locally, so feel free to add as much as you want! 😄
 
-Laiane Suzart - <a href="https://www.linkedin.com/in/laianesuzart/" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white" target="_blank"></a> 
-<a href="https://github.com/laianesuzart" target="_blank"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white" target="_blank"></a>
+## tech stack
 
-## Licença
-Este projeto está sob a licença [MIT](https://choosealicense.com/licenses/mit/).
+[![React](https://img.shields.io/badge/react-61DAFB?logo=react&logoColor=white)](https://react.dev/)
+[![Tailwind](https://img.shields.io/badge/Tailwind-06B6D4?logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
+[![Vite](https://img.shields.io/badge/Vite-646CFF?logo=vite&logoColor=white)](https://vite.dev/)
+
+## getting started
+
+To run the project locally, make sure you have [Node.js](https://nodejs.org/en/) and a package manager such as [npm](https://docs.npmjs.com/) installed.
+
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/laianesuzart/my-notepad.git
+   ```
+2. Navigate to the project folder:
+   ```bash
+   cd my-notepad
+   ```
+3. Install the dependencies:
+   ```bash
+   npm install
+   ```
+4. Start the development server:
+   ```bash
+   npm run dev
+   ```
+
+
+## layout
+
+<img width="1382" height="757" alt="image" src="https://github.com/user-attachments/assets/2e194bd9-1dd7-4f8b-b6ff-13f80b2d476c" />
+
+<img width="1372" height="754" alt="image" src="https://github.com/user-attachments/assets/d56cc81c-1f98-4b5d-ab7e-90018837979a" />
+
+## author
+
+**Laiane Suzart**:
+  <br>
+  [![Linkedin Badge](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white&link=https://www.linkedin.com/in/laianesuzart/)](https://www.linkedin.com/in/laianesuzart/)
+  [![Github Badge](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white&link=https://github.com/laianesuzart)](https://github.com/laianesuzart)
+
+## license
+
+This project is licensed under the [MIT](https://choosealicense.com/licenses/mit/) license.
